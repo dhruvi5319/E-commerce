@@ -1,0 +1,134 @@
+/* Main container for the checkout page */
+.checkout {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fffaf4; /* Light peach background to match the theme */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif; /* Matching the font style */
+    color: #333; /* Neutral text color for readability */
+  }
+  
+  /* Heading styling */
+  .checkout h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #ff5722; /* Highlighted orange color */
+    font-weight: 700;
+  }
+  
+  /* Form styling */
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form group container */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Label styling */
+  .checkout-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555; /* Slightly muted text color */
+  }
+  
+  /* Input fields styling */
+  .checkout-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Input focus styling */
+  .checkout-form input:focus {
+    outline: none;
+    border-color: #ff5722; /* Matching the orange accent */
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.3);
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff5722; /* Orange accent for the button */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Submit button hover effect */
+  .submit-button:hover {
+    background-color: #e64a19; /* Slightly darker orange for hover */
+    box-shadow: 0 2px 8px rgba(230, 74, 25, 0.4);
+  }
+  
+  /* Responsive design adjustments */
+  
+  /* For larger screens (1280px and up) */
+  @media (min-width: 1280px) {
+    .checkout {
+      max-width: 800px;
+      padding: 30px;
+    }
+  
+    .checkout h1 {
+      font-size: 32px;
+    }
+  
+    .checkout-form input {
+      font-size: 18px;
+      padding: 14px;
+    }
+  
+    .submit-button {
+      font-size: 18px;
+      padding: 14px;
+    }
+  }
+  
+  /* For smaller screens (500px and down) */
+  @media (max-width: 500px) {
+    .checkout {
+      padding: 10px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  
+    .checkout h1 {
+      font-size: 24px;
+    }
+  
+    .form-group {
+      margin-bottom: 10px;
+    }
+  
+    .checkout-form input {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .submit-button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

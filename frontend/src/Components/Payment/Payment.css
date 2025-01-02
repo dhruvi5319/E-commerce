@@ -1,0 +1,109 @@
+/* Payment container */
+.payment-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fffaf4; /* Light peach background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+/* Payment details wrapper */
+.payment-details {
+  text-align: center;
+}
+
+/* Payment form heading */
+.payment-form h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #ff5722;
+  font-weight: 700;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Form group labels */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* Card input styling */
+.card-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Card input hover and focus */
+.card-input:hover,
+.card-input:focus-within {
+  border-color: #ff5722;
+  box-shadow: 0 0 5px rgba(255, 87, 34, 0.3);
+}
+
+/* Pay button styling */
+.pay-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff5722;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pay-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Pay button hover */
+.pay-button:hover:not(:disabled) {
+  background-color: #e64a19;
+  box-shadow: 0 2px 8px rgba(230, 74, 25, 0.4);
+}
+
+/* Payment status message */
+.payment-status {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #ff5722;
+}
+
+/* Confirmation link button styling */
+.confirmation-link .confirmation-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  color: #ff5722;
+  border: 2px solid #ff5722;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.confirmation-link .confirmation-button:hover {
+  background-color: #ff5722;
+  color: #fff;
+}
