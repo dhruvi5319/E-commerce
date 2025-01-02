@@ -1,0 +1,32 @@
+.confirmation-container {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  
+  .confirmation-container h1 {
+    font-size: 2.5em;
+    color: #ff5722;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-container p {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .continue-shopping-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .continue-shopping-btn:hover {
+    background-color: #e64a19;
+  }
+  

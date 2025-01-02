@@ -6,11 +6,12 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
- 
+const Stripe = require("stripe");
+
 app.use(express.json());
 app.use(cors());
 
-//MonoDB Coonection
+//MonoDB Connection
 mongoose.connect(
   "mongodb+srv://drathod:Scooby120106@cluster0.ltc6x.mongodb.net/e-commerce"
 );
@@ -263,6 +264,128 @@ app.post("/getcart", fetchUser, async (req, res) => {
   console.log("Get cart");
   let userData = await Users.findOne({ _id: req.user.id });
   res.json(userData.cartData);
+});
+
+//Creating endpoint to handle payment with stripe
+
+// Replace this with your Stripe Secret Key
+const stripe = Stripe(
+  "sk_test_51QPsLNGG1Y34r33iR9Ja9e29XEcPxckAQV5MqzZkKrOrLUhn0ZtgOjNoYu4HORtIUC7Y2BYuVqOIbfApJPAsxRyR00R5zxHSST"
+);
+
+app.post("/create-payment-intent", fetchUser, async (req, res) => {
+  const { amount } = req.body;
+
+  // Validate the amount
+  if (!amount || amount <= 0) {
+    return res.status(400).json({ error: "Invalid amount" });
+  }
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount, // Amount in cents
+      currency: "usd",
+      payment_method_types: ["card"],
+    });
+
+    res.status(200).send({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error("Error creating payment intent:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//Schema for Order details
+const Order = mongoose.model("Order", {
+  orderId: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+    required: true,
+  },
+  items: {
+    type: Object, // Adjust based on your cart data structure
+    required: true,
+  },
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+//Endpoint to save data
+app.post("/save-order", async (req, res) => {
+  const { orderId, userId, items, totalAmount } = req.body;
+
+  try {
+    const newOrder = new Order({
+      orderId,
+      userId,
+      items,
+      totalAmount,
+    });
+
+    await newOrder.save();
+
+    res.json({ success: true, message: "Order saved successfully." });
+  } catch (error) {
+    console.error("Error saving order:", error.message);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//Endpoint to fetch user id
+app.get("/get-user-id", (req, res) => {
+  const token = req.header("auth-token");
+  if (!token) {
+    return res.status(401).json({ error: "Auth token missing" });
+  }
+
+  try {
+    const verified = jwt.verify(token, "your_jwt_secret_key");
+    res.json({ userId: verified.user.id });
+  } catch (error) {
+    res.status(400).json({ error: "Invalid token" });
+  }
+});
+
+//clear cart endpoint
+app.post("/clear-cart", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // Clear the user's cart
+    await Users.findOneAndUpdate({ _id: userId }, { cartData: {} });
+
+    res.json({ success: true, message: "Cart cleared successfully." });
+  } catch (error) {
+    console.error("Error clearing cart:", error.message);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//fetch order details endpoint
+app.get("/get-order/:orderId", async (req, res) => {
+  const { orderId } = req.params;
+
+  try {
+    const order = await Order.findOne({ orderId });
+
+    if (!order) {
+      return res.status(404).send({ error: "Order not found." });
+    }
+
+    res.json(order);
+  } catch (error) {
+    console.error("Error fetching order:", error.message);
+    res.status(500).send({ error: error.message });
+  }
 });
 
 app.listen(port, (error) => {
