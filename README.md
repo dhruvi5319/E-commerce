@@ -76,5 +76,4 @@ To set up the project locally, follow these steps:
 ---
 
 ## 🚀 **Future Enhancements**
-- 💳 Add payment methods (e.g., PayPal, RazorPay).
 - ⭐ Add user reviews and ratings for products.
