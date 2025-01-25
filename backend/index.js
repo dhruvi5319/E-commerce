@@ -9,7 +9,11 @@ const cors = require("cors");
 const Stripe = require("stripe");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:[""],
+  methods: ["POST","GET"],
+  credentials: true
+}));
 
 //MonoDB Connection
 mongoose.connect(
